@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\BulletCtrl.cs" />
      <Compile Include="Assets\Scripts\FireCtrl.cs" />
      <Compile Include="Assets\Scripts\FollowCam.cs" />
+     <Compile Include="Assets\Scripts\MonsterCtrl.cs" />
      <Compile Include="Assets\Scripts\MyGizmo.cs" />
      <Compile Include="Assets\Scripts\PlayerCtrl.cs" />
      <Compile Include="Assets\Scripts\WallCtrl.cs" />
