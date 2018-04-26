@@ -26,13 +26,12 @@ public class MonsterCtrl : MonoBehaviour {
 
         //nvAgent.destination = playerTr.position;
 
+        animator = this.gameObject.GetComponent<Animator>();
         StartCoroutine(this.CheckMonsterState());
 
         StartCoroutine(this.MonsterAction());
 
-        animator = this.gameObject.GetComponent<Animator>();
-	
-	}
+    }
 
 
     IEnumerator CheckMonsterState()
@@ -67,21 +66,30 @@ public class MonsterCtrl : MonoBehaviour {
             {
                 case MonsterState.idle:
                     nvAgent.Stop();
-                    animator.SetBool("isTrace", false);
+                    animator.SetBool("IsTrace", true);
                     break;
                 case MonsterState.trace:
                     nvAgent.destination = playerTr.position;
                     nvAgent.Resume();
-                    animator.SetBool("isAttack", false);
-                    animator.SetBool("isTrace", true);
+                    animator.SetBool("IsAttack", false);
+                    animator.SetBool("IsTrace", true);
                     break;
                 case MonsterState.attack:
                     nvAgent.Stop();
-                    animator.SetBool("isAttack", true);
+                    animator.SetBool("IsAttack", true);
                     break;
 
             }
             yield return null;
+        }
+    }
+
+    void OnCollisionEnter(Collision coll)
+    {
+        if (coll.gameObject.tag == "BULLET")
+        {
+            Destroy(coll.gameObject);
+            animator.SetTrigger("IsHit");
         }
     }
 
